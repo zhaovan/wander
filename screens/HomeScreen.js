@@ -20,11 +20,6 @@ export default function HomeScreen() {
         contentContainerStyle={styles.contentContainer}
       >
         <SearchBar />
-        <View style={styles.getStartedContainer}>
-          <Text style={styles.getStartedText}>
-            Wander! Not all who wander are lost
-          </Text>
-        </View>
       </ScrollView>
     </View>
   );
