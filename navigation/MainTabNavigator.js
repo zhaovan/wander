@@ -28,11 +28,7 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-information-circle${focused ? "" : "-outline"}`
-          : "md-information-circle"
-      }
+      name={Platform.OS === "ios" ? "ios-home" : "md-home"}
     />
   )
 };
@@ -47,11 +43,11 @@ const PlanStack = createStackNavigator(
 );
 
 PlanStack.navigationOptions = {
-  tabBarLabel: "Plan",
+  tabBarLabel: "Plan a Trip!",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-link" : "md-link"}
+      name={Platform.OS === "ios" ? "ios-search" : "md-search"}
     />
   )
 };
@@ -70,18 +66,27 @@ ProfileStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-options" : "md-options"}
+      name={Platform.OS === "ios" ? "ios-contact" : "md-person"}
     />
   )
 };
 
 ProfileStack.path = "";
 
-const tabNavigator = createBottomTabNavigator({
-  PlanStack,
-  HomeStack,
-  ProfileStack
-});
+const tabNavigator = createBottomTabNavigator(
+  {
+    PlanStack: {
+      screen: PlanStack
+    },
+    HomeStack: {
+      screen: HomeStack
+    },
+    ProfileStack: {
+      screen: ProfileStack
+    }
+  },
+  { initialRouteName: "HomeStack" }
+);
 
 tabNavigator.path = "";
 

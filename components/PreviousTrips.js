@@ -21,27 +21,25 @@ import london from "../assets/images/london.jpg";
 export default class PreviousTrips extends Component {
   render() {
     return (
-      <Container>
-        <Content>
-          <Card style={{ height: 350 }}>
-            <CardItem>
-              <Left>
-                <Thumbnail source={pfp} />
-                <Body>
-                  <Text>London</Text>
-                </Body>
-              </Left>
-            </CardItem>
-            <CardItem cardBody>
-              <Image
-                source={london}
-                style={{ height: 200, width: null, flex: 1 }}
-                onPress={() => alert("hello!")}
-              />
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
+      <Content>
+        <Card style={{ height: 350 }}>
+          <CardItem>
+            <Left>
+              <Thumbnail source={pfp} />
+              <Body>
+                <Text>London</Text>
+              </Body>
+            </Left>
+          </CardItem>
+          <CardItem cardBody>
+            <Image
+              source={london}
+              style={{ height: 200, width: null, flex: 1 }}
+              onPress={() => alert("hello!")}
+            />
+          </CardItem>
+        </Card>
+      </Content>
     );
   }
 }
