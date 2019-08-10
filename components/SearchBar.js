@@ -12,14 +12,12 @@ import {
 export default class SearchBar extends Component {
   render() {
     return (
-      <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="Search for an upcoming trip!" />
-          </Item>
-        </Header>
-      </Container>
+      <Header searchBar rounded>
+        <Item>
+          <Icon name="ios-search" />
+          <Input placeholder="Search for an upcoming trip!" />
+        </Item>
+      </Header>
     );
   }
 }
