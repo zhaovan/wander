@@ -9,6 +9,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import PlanScreen from "../screens/PlanScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+//import SignIn from "../screens/SignIn";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
