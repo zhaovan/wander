@@ -9,18 +9,79 @@ import {
   Text
 } from "native-base";
 
-export default class LocationSearchBar extends Component {
-  render() {
-    return (
-      <Header searchBar rounded>
-        <Item>
-          <Icon name="ios-search" />
-          <Input placeholder="Search for a city or location!" />
-        </Item>
-        <Button transparent>
-          <Text>Search</Text>
-        </Button>
+import { View, Image } from "react-native";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+
+var city = "";
+
+const GooglePlacesInput = () => {
+  return (
+    <GooglePlacesAutocomplete
+      placeholder="Search for a city to travel to!"
+      minLength={2} // minimum length of text to search
+      autoFocus={false}
+      returnKeyType={"search"} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+      listViewDisplayed="auto" // true/false/undefined
+      // fetchDetails={true}
+      renderDescription={row => row.description} // custom description render
+      onPress={(data, details = null) => {
+        // 'details' is provided when fetchDetails = true
+        console.log(data);
+        city = data.description;
+        console.log(city);
+      }}
+      getDefaultValue={() => ""}
+      query={{
+        // available options: https://developers.google.com/places/web-service/autocomplete
+        key: "AIzaSyDptpVBCUtpS0B15wsxjCePizp31_lSVuQ",
+        language: "en", // language of the results
+        types: "(cities)" // default: 'geocode'
+      }}
+      styles={{
+        textInputContainer: {
+          width: "100%"
+        },
+        description: {
+          fontWeight: "bold"
+        },
+        predefinedPlacesDescription: {
+          color: "#1faadb"
+        }
+      }}
+      currentLocationLabel="Current location"
+      nearbyPlacesAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+      GoogleReverseGeocodingQuery={
+        {
+          // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+        }
+      }
+      GooglePlacesSearchQuery={{
+        // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+        rankby: "distance",
+        types: "food"
+      }}
+      filterReverseGeocodingByTypes={[
+        "locality",
+        "administrative_area_level_3"
+      ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+      debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+      renderLeftButton={() => (
+        <Icon name="ios-search" style={{ marginTop: 6, marginLeft: 5 }} />
+      )}
+    />
+  );
+};
+
+function LocationSearchBar(props) {
+  return (
+    <View style={{ flex: 1 }}>
+      <Header>
+        <Text>To start a new trip, add your city of interest!</Text>
       </Header>
-    );
-  }
+      <GooglePlacesInput />
+      {city ? navigation.navigate("NewItinerary") : null}
+    </View>
+  );
 }
+
+export default LocationSearchBar;

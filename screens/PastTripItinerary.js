@@ -12,27 +12,31 @@ import {
 import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
 import PreviousTrips from "../components/PreviousTrips";
-import { H2, H3 } from "native-base";
+import { H2, H3, CardItem, Card, Header, Button } from "native-base";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
-export default function HomeScreen({ navigation }) {
+export default function PastTripItinerary({ city, navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <H2 style={{ textAlign: "center", margin: 30 }}>Welcome back, Soha!</H2>
-        <H3 style={{ textAlign: "center" }}>View your upcoming trips below</H3>
-        <SearchBar />
-
-        <PreviousTrips navigation={navigation} />
-        <PreviousTrips navigation={navigation} />
+        <H2 style={{ textAlign: "center", margin: 30 }}>city</H2>
+        <Card transparent>
+          <CardItem>
+            <Header>
+              <Text>Reservation Data: Hotel dates</Text>
+            </Header>
+          </CardItem>
+        </Card>
       </ScrollView>
+      <Button title="Go Back" onPress={() => navigation.navigate("Home")} />
     </View>
   );
 }
 
-HomeScreen.navigationOptions = {
+PastTripItinerary.navigationOptions = {
   header: null
 };
 
