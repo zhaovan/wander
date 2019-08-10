@@ -9,6 +9,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import PlanScreen from "../screens/PlanScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import SignIn from "../screens/SignIn";
 import PastTripItinerary from "../screens/PastTripItinerary";
 
 const config = Platform.select({

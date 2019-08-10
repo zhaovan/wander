@@ -9,6 +9,7 @@ import AppNavigator from "./navigation/AppNavigator";
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+  //const [isSignedIn, setSigning] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -18,7 +19,8 @@ export default function App(props) {
         onFinish={() => handleFinishLoading(setLoadingComplete)}
       />
     );
-  } else {
+  }
+  else {
     return (
       <View style={styles.container}>
         {Platform.OS === "ios" && <StatusBar barStyle="default" />}
