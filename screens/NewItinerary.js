@@ -1,11 +1,12 @@
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View
 } from "react-native";
@@ -21,11 +22,14 @@ import {
   Button,
   DatePicker
 } from "native-base";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import { TouchableHighlight, TextInput } from "react-native-gesture-handler";
 import { tsConditionalType } from "@babel/types";
 
 export function NewItinerary({ navigation }) {
   const city = navigation.getParam("city", "No City");
+
+  const [address, setAddress] = useState("");
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -76,9 +80,26 @@ export function NewItinerary({ navigation }) {
               disabled={false}
             />
           </CardItem>
-          <CardItem />
+          <CardItem>
+            <Text>Enter place of stay address:</Text>
+            <TextInput value={this.value} />
+            <Button onPress={console.log(value)} />
+          </CardItem>
         </Card>
+        <Button
+          title="Oh lordrddd"
+          onPress={async () => {
+            const [lat, lon] = [-33.8670522, 151.1957362];
+
+            const data = await fetch(
+              `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyDptpVBCUtpS0B15wsxjCePizp31_lSVuQ`
+            );
+
+            console.log(data);
+          }}
+        />
       </ScrollView>
+
       <Button
         title="Go Back"
         onPress={() => navigation.navigate("PlanStack")}
