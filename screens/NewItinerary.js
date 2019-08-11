@@ -12,23 +12,71 @@ import {
 import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
 import PreviousTrips from "../components/PreviousTrips";
-import { H2, H3, CardItem, Card, Header, Button } from "native-base";
+import {
+  H2,
+  H3,
+  CardItem,
+  Card,
+  Header,
+  Button,
+  DatePicker
+} from "native-base";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import { tsConditionalType } from "@babel/types";
 
-export default function NewItinerary({ city, navigation }) {
+export function NewItinerary({ navigation }) {
+  const city = navigation.getParam("city", "No City");
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <H2 style={{ textAlign: "center", margin: 30 }}>city</H2>
+        <H2
+          style={{
+            textAlign: "center",
+            margin: 30,
+            backgroundColor: "#FFC0CB"
+          }}
+        >
+          {city}
+        </H2>
         <Card transparent>
           <CardItem>
-            <Header>
-              <Text>Reservation Data: Hotel dates</Text>
-            </Header>
+            <Text>Please input your travel dates: Leave</Text>
+            <DatePicker
+              defaultDate={new Date()}
+              minimumDate={new Date()}
+              timeZoneOffsetInMinutes={undefined}
+              modalTransparent={false}
+              animationType={"fade"}
+              androidMode={"default"}
+              placeHolderText="Select date"
+              textStyle={{ color: "green" }}
+              placeHolderTextStyle={{ color: "#d3d3d3" }}
+              onDateChange={this.setDate}
+              disabled={false}
+            />
           </CardItem>
+          <CardItem>
+            <Text>Return:</Text>
+            <DatePicker
+              defaultDate={new Date(2018, 4, 4)}
+              minimumDate={new Date(2018, 1, 1)}
+              maximumDate={new Date(2018, 12, 31)}
+              locale={"en"}
+              timeZoneOffsetInMinutes={undefined}
+              modalTransparent={false}
+              animationType={"fade"}
+              androidMode={"default"}
+              placeHolderText="Select date"
+              textStyle={{ color: "green" }}
+              placeHolderTextStyle={{ color: "#d3d3d3" }}
+              onDateChange={this.setDate}
+              disabled={false}
+            />
+          </CardItem>
+          <CardItem />
         </Card>
       </ScrollView>
       <Button
@@ -39,7 +87,7 @@ export default function NewItinerary({ city, navigation }) {
   );
 }
 
-PastTripItinerary.navigationOptions = {
+NewItinerary.navigationOptions = {
   header: null
 };
 

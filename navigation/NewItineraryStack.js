@@ -1,4 +1,4 @@
-import { PastTripItinerary } from "../screens/PastTripItinerary";
+import { NewItinerary } from "../screens/NewItinerary";
 import { createStackNavigator } from "react-navigation";
 import { Platform } from "react-native";
 
@@ -7,11 +7,11 @@ const config = Platform.select({
   default: {}
 });
 
-export const PastTripItineraryStack = createStackNavigator(
+export const NewItineraryStack = createStackNavigator(
   {
-    PastTripScreen: PastTripItinerary
+    NewItineraryScreen: NewItinerary
   },
   config
 );
 
-PastTripItineraryStack.path = "";
+NewItineraryStack.path = "";

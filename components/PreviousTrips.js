@@ -27,9 +27,11 @@ export default class PreviousTrips extends Component {
     return (
       <Content>
         <TouchableWithoutFeedback
-          onPress={() =>
-            this.props.navigation.navigate("PastTrips", { city: "London" })
-          }
+          onPress={() => {
+            this.props.navigation.navigate("PastTripScreen", {
+              city: "London"
+            });
+          }}
         >
           <Card style={{ height: 350 }}>
             <CardItem>

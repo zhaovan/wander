@@ -3,10 +3,10 @@ import { ScrollView, StyleSheet } from "react-native";
 import { ExpoLinksView } from "@expo/samples";
 import SearchBar from "../components/LocationSearchBar";
 
-export default function PlanScreen() {
+export default function PlanScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
-      <SearchBar />
+      <SearchBar navigation={navigation} />
     </ScrollView>
   );
 }

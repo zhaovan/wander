@@ -14,7 +14,7 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 
 var city = "";
 
-const GooglePlacesInput = () => {
+const GooglePlacesInput = ({ navigation }) => {
   return (
     <GooglePlacesAutocomplete
       placeholder="Search for a city to travel to!"
@@ -22,15 +22,16 @@ const GooglePlacesInput = () => {
       autoFocus={false}
       returnKeyType={"search"} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
       listViewDisplayed="auto" // true/false/undefined
-      // fetchDetails={true}
       renderDescription={row => row.description} // custom description render
       onPress={(data, details = null) => {
         // 'details' is provided when fetchDetails = true
         console.log(data);
         city = data.description;
-        console.log(city);
+        console.log(navigation);
+        navigation.navigate("NewItineraryScreen", { city: city });
+        console.log("Redirected!");
       }}
-      getDefaultValue={() => ""}
+      // getDefaultValue={() => ""}
       query={{
         // available options: https://developers.google.com/places/web-service/autocomplete
         key: "AIzaSyDptpVBCUtpS0B15wsxjCePizp31_lSVuQ",
@@ -50,11 +51,6 @@ const GooglePlacesInput = () => {
       }}
       currentLocationLabel="Current location"
       nearbyPlacesAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
-      GoogleReverseGeocodingQuery={
-        {
-          // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-        }
-      }
       GooglePlacesSearchQuery={{
         // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
         rankby: "distance",
@@ -72,14 +68,13 @@ const GooglePlacesInput = () => {
   );
 };
 
-function LocationSearchBar(props) {
+function LocationSearchBar({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
       <Header>
         <Text>To start a new trip, add your city of interest!</Text>
       </Header>
-      <GooglePlacesInput />
-      {city ? navigation.navigate("NewItinerary") : null}
+      <GooglePlacesInput navigation={navigation} />
     </View>
   );
 }
