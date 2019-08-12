@@ -13,6 +13,8 @@ import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
 import PreviousTrips from "../components/PreviousTrips";
 import { H2, H3 } from "native-base";
+import rome from "../assets/images/rome.jpg";
+import london from "../assets/images/london.jpg";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -25,8 +27,8 @@ export default function HomeScreen({ navigation }) {
         <H3 style={{ textAlign: "center" }}>View your upcoming trips below</H3>
         <SearchBar />
 
-        <PreviousTrips navigation={navigation} />
-        <PreviousTrips navigation={navigation} />
+        <PreviousTrips navigation={navigation} picture={london} />
+        <PreviousTrips navigation={navigation} picture={rome} />
       </ScrollView>
     </View>
   );

@@ -27,7 +27,6 @@ const GooglePlacesInput = ({ navigation }) => {
         // 'details' is provided when fetchDetails = true
         console.log(data);
         city = data.description;
-        console.log(navigation);
         navigation.navigate("NewItineraryScreen", { city: city });
         console.log("Redirected!");
       }}

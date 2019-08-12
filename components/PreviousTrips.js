@@ -20,7 +20,7 @@ import {
 } from "native-base";
 
 import pfp from "../assets/images/corgi.jpg";
-import london from "../assets/images/london.jpg";
+// import london from "../assets/images/london.jpg";
 
 export default class PreviousTrips extends Component {
   render() {
@@ -44,7 +44,7 @@ export default class PreviousTrips extends Component {
             </CardItem>
             <CardItem cardBody>
               <Image
-                source={london}
+                source={this.props.picture}
                 style={{ height: 200, width: null, flex: 1 }}
               />
             </CardItem>
