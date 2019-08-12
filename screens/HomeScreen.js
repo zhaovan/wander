@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
-import PreviousTrips from "../components/PreviousTrips";
+import Trips from "../components/Trips";
 import { H2, H3 } from "native-base";
 
 export default function HomeScreen({ navigation }) {
@@ -25,8 +25,6 @@ export default function HomeScreen({ navigation }) {
         <H3 style={{ textAlign: "center" }}>View your upcoming trips below</H3>
         <SearchBar />
 
-        <PreviousTrips navigation={navigation} />
-        <PreviousTrips navigation={navigation} />
       </ScrollView>
     </View>
   );

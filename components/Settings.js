@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PreviousTrips from "./PreviousTrips";
+import Trips from "./Trips";
 import { View, TextInput, Image } from "react-native";
 import { Card, Text, Body, CardItem } from "native-base";
 import pfp from "../assets/images/profile-pic.png";
