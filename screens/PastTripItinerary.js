@@ -31,13 +31,15 @@ export function PastTripItinerary({ navigation }) {
             </Header>
           </CardItem>
         </Card>
+        <Button
+          light
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
+          <Text>Go Back</Text>
+        </Button>
       </ScrollView>
-      <Button
-        title="Go Back"
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
-      />
     </View>
   );
 }
