@@ -23,7 +23,6 @@ import {
   ListItem,
   Separator
 } from "native-base";
-import { arrayExpression } from "@babel/types";
 
 export function NewItinerary({ navigation }) {
   const city = navigation.getParam("city", "No City");
