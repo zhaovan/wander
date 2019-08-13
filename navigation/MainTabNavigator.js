@@ -10,7 +10,7 @@ import HomeScreen from "../screens/HomeScreen";
 import PlanScreen from "../screens/PlanScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import PastTripItinerary from "../screens/PastTripItinerary";
-
+56
 const config = Platform.select({
   web: { headerMode: "screen" },
   default: {}

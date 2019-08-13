@@ -22,13 +22,15 @@ import {
   ListItem,
   Separator
 } from "native-base";
-
+import { db } from '../config';
 export function NewItinerary({ navigation }) {
   const city = navigation.getParam("city", "No City");
 
   const [address, setAddress] = useState("");
   const [nearbyLocations, setLocations] = useState();
   const [savedLocations, setSavedLocations] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   return (
     <View style={styles.container}>
       <ScrollView
@@ -57,7 +59,7 @@ export function NewItinerary({ navigation }) {
               placeHolderText="Select date"
               textStyle={{ color: "green" }}
               placeHolderTextStyle={{ color: "#d3d3d3" }}
-              onDateChange={this.setDate}
+              onDateChange={add => setStartDate(add)}
               disabled={false}
             />
           </CardItem>
@@ -74,7 +76,7 @@ export function NewItinerary({ navigation }) {
               placeHolderText="Select date"
               textStyle={{ color: "green" }}
               placeHolderTextStyle={{ color: "#d3d3d3" }}
-              onDateChange={this.setDate}
+              onDateChange={add => setEndDate(add)}
               disabled={false}
             />
           </CardItem>
@@ -149,7 +151,7 @@ export function NewItinerary({ navigation }) {
               </ListItem>
             ))
           : null}
-        <Button transparent onPress={() => navigation.navigate("HomeStack")}>
+        <Button transparent Text='Save This Itinerary' onPress={() => pushData(city, address, savedLocations, startDate, endDate)}>
           <Text>Save this itinerary</Text>
         </Button>
         <Button transparent onPress={() => navigation.navigate("PlanStack")}>
@@ -158,6 +160,20 @@ export function NewItinerary({ navigation }) {
       </ScrollView>
     </View>
   );
+}
+
+function pushData(city, address, savedLocations, startDate, endDate) {
+  let addDoc = db.collection('users').add({
+    Name: 'Soha',
+    Email: 'soha@fakeemail.com',
+    Location: city,
+    LivingAddress: address,
+    Itinerary: savedLocations,
+    StartDate: startDate,
+    EndDate: endDate
+  }).then(ref => {
+    console.log('Added document with ID: ', ref.id);
+  });
 }
 
 NewItinerary.navigationOptions = {
