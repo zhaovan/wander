@@ -15,14 +15,15 @@ import Trips from "../components/Trips";
 import { H2, H3, CardItem, Card, Header, Button } from "native-base";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
-export default function PastTripItinerary({ city, navigation }) {
+export function PastTripItinerary({ navigation }) {
+  const city = navigation.getParam("city", "No City");
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <H2 style={{ textAlign: "center", margin: 30 }}>city</H2>
+        <H2 style={{ textAlign: "center", margin: 30 }}>{city}</H2>
         <Card transparent>
           <CardItem>
             <Header>
@@ -30,8 +31,15 @@ export default function PastTripItinerary({ city, navigation }) {
             </Header>
           </CardItem>
         </Card>
+        <Button
+          light
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
+          <Text>Go Back</Text>
+        </Button>
       </ScrollView>
-      <Button title="Go Back" onPress={() => navigation.navigate("Home")} />
     </View>
   );
 }
