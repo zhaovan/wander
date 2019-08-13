@@ -21,9 +21,10 @@ import {
   Right
 } from "native-base";
 import { db } from '../config';
-
 import pfp from "../assets/images/corgi.jpg";
 import london from "../assets/images/london.jpg";
+import moment from "moment";
+import date from 'date';
 
 const styles = StyleSheet.create({
   container: {
@@ -64,6 +65,8 @@ export default class Trips extends Component {
           livingState: doc.data().Living.State,
           livingZipCode: doc.data().Living.ZipCode
         };
+        let date = users.startDate;
+        console.log(date);
         this.setState({ users });
       });
     });
@@ -90,7 +93,7 @@ export default class Trips extends Component {
                 <Thumbnail source={pfp} />
                 <Body>
                   <Text>{this.state.users.livingCity}</Text>
-                  <Text>{this.state.users.email}</Text>
+                  <Text>{this.state.users.name}</Text>
                 </Body>
               </Left>
             </CardItem>
