@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
-import PreviousTrips from "../components/PreviousTrips";
 import {
   H2,
   CardItem,

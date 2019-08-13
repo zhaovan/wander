@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
-import PreviousTrips from "../components/PreviousTrips";
+import Trips from "../components/Trips";
 import { H2, H3, CardItem, Card, Header, Button } from "native-base";
 import { TouchableHighlight } from "react-native-gesture-handler";
 

@@ -1,9 +1,9 @@
 import React from "react";
-import PreviousTrips from "./PreviousTrips";
+import Trips from "./Trips";
 import { View } from "react-native";
 
 function PreviousTripsTab(props) {
-  return <PreviousTrips {...props} />;
+  return <Trips {...props} />;
 }
 
 export default PreviousTripsTab;
