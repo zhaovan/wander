@@ -23,8 +23,6 @@ import {
 import { db } from "../config";
 import pfp from "../assets/images/corgi.jpg";
 import london from "../assets/images/london.jpg";
-import Moment from "react-moment";
-import date from "date";
 
 const styles = StyleSheet.create({
   container: {
