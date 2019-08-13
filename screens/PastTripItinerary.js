@@ -27,7 +27,7 @@ export function PastTripItinerary({ navigation }) {
         <Card transparent>
           <CardItem>
             <Header>
-              <Text>Reservation Data: Hotel dates</Text>
+              <Text>Locations on this Intinerary</Text>
             </Header>
           </CardItem>
         </Card>

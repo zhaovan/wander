@@ -70,6 +70,7 @@ export default class Trips extends Component {
           livingCity: doc.data().Living.City,
           livingState: doc.data().Living.State,
           livingZipCode: doc.data().Living.ZipCode,
+          imageUrl: doc.data().ImageUrl,
           range
         };
         this.setState({ users });
@@ -78,12 +79,14 @@ export default class Trips extends Component {
   }
 
   render() {
-    // start = start.getMonth() + 1 +'/'+ start.getDate() + '/' + start.getFullYear();
-    // console.log(start);
     return (
       <Content>
         <TouchableWithoutFeedback
-          onPress={() => this.props.navigation.navigate("Trips", { users })}
+          onPress={() =>
+            this.props.navigation.navigate("PastTripScreen", {
+              users: this.state.users
+            })
+          }
         >
           <Card style={{ height: 350 }}>
             <CardItem>
@@ -97,7 +100,7 @@ export default class Trips extends Component {
             </CardItem>
             <CardItem cardBody>
               <Image
-                source={london}
+                source={{ uri: this.state.users.imageUrl }}
                 style={{ height: 200, width: null, flex: 1 }}
               />
             </CardItem>

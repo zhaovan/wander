@@ -13,8 +13,7 @@ import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
 import Trips from "../components/Trips";
 import { H2, H3 } from "native-base";
-import rome from "../assets/images/rome.jpg";
-import london from "../assets/images/london.jpg";
+import AllTrips from "../components/AllTrips";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -28,7 +27,7 @@ export default function HomeScreen({ navigation }) {
           View your upcoming trips below
         </H3>
         <SearchBar />
-
+        <AllTrips />
       </ScrollView>
     </View>
   );
