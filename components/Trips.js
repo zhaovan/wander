@@ -23,7 +23,7 @@ import {
 import { db } from '../config';
 import pfp from "../assets/images/corgi.jpg";
 import london from "../assets/images/london.jpg";
-import moment from "moment";
+import Moment from 'react-moment';
 import date from 'date';
 
 const styles = StyleSheet.create({
@@ -53,38 +53,40 @@ export default class Trips extends Component {
     let users = this.state.users;
     collection.get().then(snapshot => {
       snapshot.forEach(doc => {
+
+        const {
+          StartDate: startDate,
+          EndDate: endDate
+        } = doc.data()
+        let begin = startDate.split(" ");
+        let end = endDate.split(" ");
+        const range = `${begin[1]} ${begin[0]} ${begin[2]} - ${end[1]} ${end[0]} ${end[2]}`
         users = {
           name: doc.data().Name,
           email: doc.data().Email,
-          startDate: doc.data().StartDate,
-          endDate: doc.data().EndDate,
+          startDate,
+          endDate,
           itinerary: doc.data().Itinerary,
           livingName: doc.data().Living.Name,
           livingStreetAddress: doc.data().Living.StreetAddress,
           livingCity: doc.data().Living.City,  
           livingState: doc.data().Living.State,
-          livingZipCode: doc.data().Living.ZipCode
+          livingZipCode: doc.data().Living.ZipCode,
+          range
         };
-        let date = users.startDate;
-        console.log(date);
         this.setState({ users });
       });
     });
   }
 
   render() {
+    // start = start.getMonth() + 1 +'/'+ start.getDate() + '/' + start.getFullYear();
+    // console.log(start);
     return (
-      // <View style={styles.container}>
-      //   {this.state.users.length > 0 ? (
-      //     <TripComponent users={this.state.users} />
-      //   ) : (
-      //       <Text>No information</Text>
-      //     )}
-      // </View>
       <Content>
         <TouchableWithoutFeedback
           onPress={() =>
-            this.props.navigation.navigate("Trips", { users })
+            this.props.navigation.navigate("PastTrips", { city: "London" })
           }
         >
           <Card style={{ height: 350 }}>
@@ -93,7 +95,7 @@ export default class Trips extends Component {
                 <Thumbnail source={pfp} />
                 <Body>
                   <Text>{this.state.users.livingCity}</Text>
-                  <Text>{this.state.users.name}</Text>
+                  <Text>{this.state.users.range}</Text>
                 </Body>
               </Left>
             </CardItem>
