@@ -121,7 +121,7 @@ export function NewItinerary({ navigation }) {
               defaultDate={new Date()}
               minimumDate={new Date()}
               timeZoneOffsetInMinutes={undefined}
-              modalTransparent={false}
+              modalTransparent={true}
               animationType={"fade"}
               androidMode={"default"}
               placeHolderText="Select date"
@@ -138,7 +138,7 @@ export function NewItinerary({ navigation }) {
               minimumDate={new Date()}
               locale={"en"}
               timeZoneOffsetInMinutes={undefined}
-              modalTransparent={false}
+              modalTransparent={true}
               animationType={"fade"}
               androidMode={"default"}
               placeHolderText="Select date"
