@@ -190,8 +190,8 @@ function pushData(city, address, savedLocations, startDate, endDate) {
       Location: city,
       LivingAddress: address,
       Itinerary: savedLocations,
-      StartDate: startDate,
-      EndDate: endDate,
+      StartDate: startDate.toString(),
+      EndDate: endDate.toString(),
       ProfilePic:
         "https://www.petpremium.com/wp-content/uploads/ppbr/breeds/pembroke-welch-corgi_profile_350x400.jpg"
     })
