@@ -123,7 +123,9 @@ export function NewItinerary({ navigation }) {
               });
           }}
         >
-          <Text primary>Search for a location near your hotel!</Text>
+          <Text primary rounded style={{ position: "absolute", left: "25%" }}>
+            Search for a location near your hotel!
+          </Text>
         </Button>
         <Separator bordered style={{ flex: 1, height: 50 }}>
           <Text>Locations in Itinerary (Tap to delete):</Text>
@@ -180,6 +182,7 @@ export function NewItinerary({ navigation }) {
           : null}
         <Button
           primary
+          style={{ margin: 10 }}
           onPress={() => {
             pushData(city, address, savedLocations, startDate, endDate, photo);
             navigation.navigate("HomeStack");
@@ -191,8 +194,14 @@ export function NewItinerary({ navigation }) {
             Save this itinerary
           </Text>
         </Button>
-        <Button transparent onPress={() => navigation.navigate("PlanStack")}>
-          <Text>Go back!</Text>
+        <Button
+          bordered
+          info
+          rounded
+          style={{ margin: 10 }}
+          onPress={() => navigation.navigate("PlanStack")}
+        >
+          <Text style={{ position: "absolute", left: "45%" }}>Go back!</Text>
         </Button>
       </ScrollView>
     </View>
