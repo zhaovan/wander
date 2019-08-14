@@ -9,8 +9,6 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import SearchBar from "../components/SearchBar";
-import { MonoText } from "../components/StyledText";
 import {
   H2,
   CardItem,

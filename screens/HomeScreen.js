@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
-import SearchBar from "../components/SearchBar";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { H2, H3, Header } from "native-base";
 import AllTrips from "../components/AllTrips";
 import CurrentTrip from "../components/CurrentTrip";

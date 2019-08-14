@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { ExpoLinksView } from "@expo/samples";
 import SearchBar from "../components/LocationSearchBar";
 
 export default function PlanScreen({ navigation }) {

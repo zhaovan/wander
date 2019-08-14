@@ -1,22 +1,13 @@
 import React, { Component } from "react";
-import {
-  Image,
-  StyleSheet,
-  TouchableHighlight,
-  TouchableWithoutFeedback
-} from "react-native";
+import { Image, TouchableWithoutFeedback } from "react-native";
 import {
   Content,
   Card,
   CardItem,
   Thumbnail,
   Text,
-  Button,
-  Icon,
   Left,
-  Body,
-  Right,
-  Spinner
+  Body
 } from "native-base";
 import { db } from "../config";
 
@@ -27,7 +18,6 @@ export default class Trips extends Component {
 
   // Trying to pull snapshot of the data
   async componentDidMount() {
-    const { users } = this.state;
     const collection = await db.collection("users");
 
     collection.get().then(snapshot => {
@@ -84,8 +74,6 @@ export default class Trips extends Component {
               <TouchableWithoutFeedback
                 key={imageUrl}
                 onPress={() => {
-                  console.log(this.props);
-
                   this.props.navigation.navigate("PastTripScreen", {
                     city,
                     name,

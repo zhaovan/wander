@@ -1,13 +1,5 @@
-import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Item,
-  Input,
-  Icon,
-  Button,
-  Text
-} from "native-base";
+import React from "react";
+import { Header, Icon, Text } from "native-base";
 
 import { View, Image } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
