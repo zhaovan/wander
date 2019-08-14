@@ -20,9 +20,12 @@ import {
   Button,
   DatePicker,
   ListItem,
-  Separator
+  Separator,
+  Left,
+  Thumbnail,
+  Body
 } from "native-base";
-import { db } from '../config';
+import { db } from "../config";
 export function NewItinerary({ navigation }) {
   const city = navigation.getParam("city", "No City");
 
@@ -119,11 +122,16 @@ export function NewItinerary({ navigation }) {
         </Separator>
         {savedLocations ? (
           savedLocations.map(({ name, vicinity, types }) => (
-            <ListItem style={{ display: "flex", flexDirection: "column" }}>
+            <ListItem thumbnail>
               <TouchableOpacity>
-                <Text>Name: {name}</Text>
-                <Text>Location: {vicinity}</Text>
-                <Text>Type of Point of Interest: {types[0]}</Text>
+                <Left>
+                  <Thumbnail source={{ uri: icon }} />
+                </Left>
+                <Body style={{ display: "flex", flexDirection: "column" }}>
+                  <Text>Name: {name}</Text>
+                  <Text>Location: {vicinity}</Text>
+                  <Text>Type of Point of Interest: {types[0]}</Text>
+                </Body>
               </TouchableOpacity>
             </ListItem>
           ))
@@ -134,8 +142,8 @@ export function NewItinerary({ navigation }) {
           <Text>Possible locations to go to:</Text>
         </Separator>
         {nearbyLocations
-          ? nearbyLocations.map(({ name, vicinity, types }) => (
-              <ListItem style={{ display: "flex", flexDirection: "column" }}>
+          ? nearbyLocations.map(({ name, vicinity, types, icon }) => (
+              <ListItem thumbnail>
                 <TouchableOpacity
                   onPress={e => {
                     setSavedLocations([
@@ -144,14 +152,25 @@ export function NewItinerary({ navigation }) {
                     ]);
                   }}
                 >
-                  <Text>Name: {name}</Text>
-                  <Text>Location: {vicinity}</Text>
-                  <Text>Type of Point of Interest: {types[0]}</Text>
+                  <Left>
+                    <Thumbnail source={{ uri: icon }} />
+                  </Left>
+                  <Body style={{ display: "flex", flexDirection: "column" }}>
+                    <Text>Name: {name}</Text>
+                    <Text>Location: {vicinity}</Text>
+                    <Text>Type of Point of Interest: {types[0]}</Text>
+                  </Body>
                 </TouchableOpacity>
               </ListItem>
             ))
           : null}
-        <Button transparent Text='Save This Itinerary' onPress={() => pushData(city, address, savedLocations, startDate, endDate)}>
+        <Button
+          transparent
+          Text="Save This Itinerary"
+          onPress={() =>
+            pushData(city, address, savedLocations, startDate, endDate)
+          }
+        >
           <Text>Save this itinerary</Text>
         </Button>
         <Button transparent onPress={() => navigation.navigate("PlanStack")}>
@@ -163,18 +182,23 @@ export function NewItinerary({ navigation }) {
 }
 
 function pushData(city, address, savedLocations, startDate, endDate) {
-  let addDoc = db.collection('users').add({
-    Name: 'Soha',
-    Email: 'soha@fakeemail.com',
-    Location: city,
-    LivingAddress: address,
-    Itinerary: savedLocations,
-    StartDate: startDate,
-    EndDate: endDate
-  }).then(ref => {
-    console.log('Added document with ID: ', ref.id);
-  });
-  alert('Your new trip has been created.');
+  const addDoc = db
+    .collection("users")
+    .add({
+      Name: "Soha",
+      Email: "soha@fakeemail.com",
+      Location: city,
+      LivingAddress: address,
+      Itinerary: savedLocations,
+      StartDate: startDate,
+      EndDate: endDate,
+      ProfilePic:
+        "https://www.petpremium.com/wp-content/uploads/ppbr/breeds/pembroke-welch-corgi_profile_350x400.jpg"
+    })
+    .then(ref => {
+      console.log("Added document with ID: ", ref.id);
+    });
+    alert("Your new trip has been created!");
 }
 
 NewItinerary.navigationOptions = {
