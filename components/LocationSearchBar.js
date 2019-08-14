@@ -24,8 +24,6 @@ const GooglePlacesInput = ({ navigation }) => {
       listViewDisplayed="auto" // true/false/undefined
       renderDescription={row => row.description} // custom description render
       onPress={(data, details = null) => {
-        // 'details' is provided when fetchDetails = true
-        console.log(data);
         city = data.description;
         navigation.navigate("NewItineraryScreen", { city: city });
         console.log("Redirected!");
@@ -59,7 +57,7 @@ const GooglePlacesInput = ({ navigation }) => {
         "locality",
         "administrative_area_level_3"
       ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-      debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+      debounce={200}
       renderLeftButton={() => (
         <Icon name="ios-search" style={{ marginTop: 6, marginLeft: 5 }} />
       )}
