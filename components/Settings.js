@@ -3,6 +3,7 @@ import Trips from "./Trips";
 import { View, TextInput, Image } from "react-native";
 import { Card, Text, Body, CardItem } from "native-base";
 import pfp from "../assets/images/profile-pic.png";
+import { db } from "../config";
 
 class Settings extends Component {
   constructor(props) {
@@ -11,16 +12,44 @@ class Settings extends Component {
   state = {
     isEditingName: false,
     isEditingPassword: false,
-    username: "Potatoes",
-    password: "*********"
+    username: "",
+    password: "*********",
+    email: "",
+    profilePic: ""
   };
+
+  async componentDidMount() {
+    const { users } = this.state;
+    const collection = await db.collection("users");
+
+    collection.get().then(snapshot => {
+      snapshot.forEach(doc => {
+        // const { StartDate: startDate, EndDate: endDate } = doc.data();
+        // let begin = startDate.split(" ");
+        // let end = endDate.split(" ");
+        // const range = `${begin[1]} ${begin[0]} ${begin[2]} - ${end[1]} ${
+        //   end[0]
+        // } ${end[2]}`;
+
+        console.log(doc.data());
+        this.setState({
+          username: doc.data().Name,
+          email: doc.data().Email,
+          profilePic: doc.data().ProfilePic
+        });
+      });
+    });
+  }
 
   render() {
     return (
       <Card transparent>
         <CardItem>
           <Body>
-            <Image source={pfp} style={{ height: 150, width: 150 }} />
+            <Image
+              source={{ uri: this.state.profilePic }}
+              style={{ height: 150, width: 150 }}
+            />
             {this.state.isEditingName ? (
               <TextInput
                 value={this.state.username}

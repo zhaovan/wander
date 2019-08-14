@@ -96,13 +96,15 @@ export default class Trips extends Component {
           .filter(({ startDate }) =>
             moment(Date.now()).isSameOrBefore(new Date(startDate))
           )
-          .map(({ city, range, imageUrl, profilePic, navigation }) => (
+          .map(({ city, range, imageUrl, profilePic }) => (
             <TouchableWithoutFeedback
-              onPress={() =>
-                navigation.navigate("PastTripScreen", {
+              onPress={() => {
+                console.log(this.props);
+
+                this.props.navigation.navigate("PastTripScreen", {
                   city: city
-                })
-              }
+                });
+              }}
             >
               <Card style={{ height: 350 }}>
                 <CardItem>

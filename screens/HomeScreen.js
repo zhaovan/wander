@@ -27,7 +27,7 @@ export default function HomeScreen({ navigation }) {
           View your upcoming trips below
         </H3>
         <SearchBar />
-        <AllTrips />
+        <AllTrips navigation={navigation} />
       </ScrollView>
     </View>
   );

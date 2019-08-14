@@ -111,7 +111,6 @@ export function NewItinerary({ navigation }) {
             );
             const nearbyData = await nearbyResult.json();
             const { results } = nearbyData;
-            console.log(nearbyData);
             setLocations(results);
           }}
         >
