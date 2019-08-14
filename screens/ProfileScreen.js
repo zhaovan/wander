@@ -1,24 +1,7 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Card,
-  CardItem,
-  Body,
-  Text,
-  Header,
-  Content,
-  Tab,
-  Tabs,
-  View,
-  H2,
-  H3,
-  Left,
-  Right
-} from "native-base";
-import { Image } from "react-native";
+import { Card, CardItem, Body, Text, Tab, Tabs, View } from "native-base";
 import PreviousTripsTab from "../components/PreviousTripsTab";
 import Settings from "../components/Settings";
-import pfp from "../assets/images/profile-pic.png";
 import { ScrollView } from "react-native-gesture-handler";
 
 class ProfileScreen extends Component {

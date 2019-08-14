@@ -18,7 +18,6 @@ export default class CurrentTrip extends Component {
 
   // Trying to pull snapshot of the data
   async componentDidMount() {
-    const { users } = this.state;
     const collection = await db.collection("users");
 
     collection.get().then(snapshot => {
