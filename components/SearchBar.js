@@ -12,7 +12,7 @@ import {
 export default class SearchBar extends Component {
   render() {
     return (
-      <Header searchBar rounded>
+      <Header searchBar rounded backgroundColor="#eb7070">
         <Item>
           <Icon name="ios-search" />
           <Input placeholder="Search for an upcoming trip!" />

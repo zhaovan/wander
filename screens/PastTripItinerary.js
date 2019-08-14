@@ -47,7 +47,7 @@ export function PastTripItinerary({ navigation }) {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <H2 style={{ textAlign: "center", margin: 30 }}>{city}</H2>
+        <H2 style={{ textAlign: "center", margin: 30, color: "white" }}>{city}</H2>
         <Card transparent>
           <CardItem>
             <H1 style={{ textAlign: "center" }}>Travel Plans for {name}</H1>
@@ -102,7 +102,7 @@ PastTripItinerary.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eb7070",
     textAlign: "center"
   },
   developmentModeText: {
