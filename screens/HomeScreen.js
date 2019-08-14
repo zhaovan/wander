@@ -19,8 +19,8 @@ export default function HomeScreen({ navigation }) {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <H2 style={{ textAlign: "center", margin: 30 }}>Welcome back, Soha!</H2>
-        <H3 style={{ textAlign: "center", margin: 10 }}>
+        <H2 style={{ textAlign: "center", margin: 30, color: "white" }}>Welcome back, Soha!</H2>
+        <H3 style={{ textAlign: "center", margin: 10, color: "white" }}>
           View your upcoming trips below
         </H3>
         {/* <SearchBar /> */}
@@ -37,7 +37,7 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FDF5E6"
+    backgroundColor: "#eb7070"
   },
   developmentModeText: {
     marginBottom: 20,

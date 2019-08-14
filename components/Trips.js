@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "#ebebeb"
+  },
+  cardStyle: {
+    backgroundColor: "#eb7070"
   }
 });
 
@@ -37,13 +40,6 @@ export default class Trips extends Component {
 
   //trying to pull snapshot of the data
   async componentDidMount() {
-    // var snapshot = await db.collection("users").get();
-    // console.log(snapshot.docs);
-    // snapshot = snapshot.docs;
-    // let users = Object.values(snapshot);
-    // console.log("users")
-    // console.log(users);
-    // this.setState({ users });
 
     const { users } = this.state;
     const collection = await db.collection("users");
