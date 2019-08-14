@@ -197,6 +197,7 @@ function pushData(city, address, savedLocations, startDate, endDate) {
     .then(ref => {
       console.log("Added document with ID: ", ref.id);
     });
+    alert("Your new trip has been created!");
 }
 
 NewItinerary.navigationOptions = {
