@@ -96,13 +96,19 @@ export default class Trips extends Component {
           .filter(({ startDate }) =>
             moment(Date.now()).isSameOrBefore(new Date(startDate))
           )
-          .map(({ city, range, imageUrl, profilePic }) => (
+          .map(({ city, name, email, itinerary, livingStreetAddress, range, imageUrl, profilePic }) => (
             <TouchableWithoutFeedback
               onPress={() => {
                 console.log(this.props);
 
                 this.props.navigation.navigate("PastTripScreen", {
-                  city: city
+                  city,
+                  name,
+                  email,
+                  range,
+                  itinerary,
+                  livingStreetAddress,
+                  imageUrl
                 });
               }}
             >

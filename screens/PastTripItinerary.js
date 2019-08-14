@@ -12,11 +12,17 @@ import {
 import SearchBar from "../components/SearchBar";
 import { MonoText } from "../components/StyledText";
 import Trips from "../components/Trips";
-import { H2, H3, CardItem, Card, Header, Button } from "native-base";
+import { H2, H3, H4, CardItem, Card, Header, Body, Button, H1, List, ListItem } from "native-base";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 export function PastTripItinerary({ navigation }) {
   const city = navigation.getParam("city", "No City");
+  const name = navigation.getParam("name", "No information available");
+  const email = navigation.getParam("email", "No information available");
+  const range = navigation.getParam("range", "No information available");
+  const itinerary = navigation.getParam("itinerary", "No information available");
+  const livingStreetAddress = navigation.getParam("livingStreetAddress", "No information available");
+  const imageUrl = navigation.getParam("imageUrl", "No information available")
   return (
     <View style={styles.container}>
       <ScrollView
@@ -26,10 +32,37 @@ export function PastTripItinerary({ navigation }) {
         <H2 style={{ textAlign: "center", margin: 30 }}>{city}</H2>
         <Card transparent>
           <CardItem>
-            <Header>
-              <Text>Locations on this Intinerary</Text>
-            </Header>
+            <H1>Travel Plans for {name}</H1>
           </CardItem>
+          <CardItem>
+          <Body>
+              <H3>{range}</H3>
+            </Body>
+          </CardItem>
+          <CardItem cardBody>
+                  <Image
+                    source={{ uri: imageUrl }}
+                    style={{ height: 200, width: null, flex: 1 }}
+                  />
+                </CardItem>
+          <CardItem>
+              <Text>You're staying at: </Text>
+              <Text>{livingStreetAddress}</Text>
+          </CardItem>
+          <CardItem>
+            <Text>Yor plans for your trip:</Text>
+          </CardItem>
+          <CardItem>
+          <View>
+  {itinerary.map((item, i) => (
+      <ListItem
+        key={i}
+        name={item.name}
+      />
+    ))
+  }
+</View>
+        </CardItem>
         </Card>
         <Button
           light
