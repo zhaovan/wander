@@ -29,7 +29,6 @@ export default class CurrentTrip extends Component {
           end[1]
         } ${end[2]}`;
 
-        // console.log(doc.data());
         this.setState({
           users: [
             ...this.state.users,
