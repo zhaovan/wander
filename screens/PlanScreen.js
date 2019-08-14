@@ -18,7 +18,6 @@ PlanScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: "#eb7070"
+    paddingTop: 15
   }
 });

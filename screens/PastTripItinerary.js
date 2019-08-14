@@ -102,7 +102,7 @@ PastTripItinerary.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#eb7070",
+    backgroundColor: "#fec771",
     textAlign: "center"
   },
   developmentModeText: {
@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
   welcomeContainer: {
     alignItems: "center",
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    backgroundColor: "#fec771"
   },
   welcomeImage: {
     width: 100,
