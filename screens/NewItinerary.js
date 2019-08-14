@@ -131,7 +131,13 @@ export function NewItinerary({ navigation }) {
         {savedLocations ? (
           savedLocations.map(({ name, vicinity, types, icon }) => (
             <ListItem thumbnail>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setSavedLocations([
+                    ...savedLocations.filter(place => place.name != name)
+                  ]);
+                }}
+              >
                 <Left>
                   <Thumbnail source={{ uri: icon }} />
                 </Left>

@@ -92,33 +92,52 @@ export default class Trips extends Component {
           .filter(({ startDate }) =>
             moment(Date.now()).isSameOrAfter(new Date(startDate))
           )
-          .map(({ city, range, imageUrl, profilePic }) => (
-            <TouchableWithoutFeedback
-              onPress={() =>
-                this.props.navigation.navigate("PastTripScreen", {
-                  city: city
-                })
-              }
-            >
-              <Card style={{ height: 350 }}>
-                <CardItem>
-                  <Left>
-                    <Thumbnail source={{ uri: profilePic }} />
-                    <Body>
-                      <Text>{city}</Text>
-                      <Text>{range}</Text>
-                    </Body>
-                  </Left>
-                </CardItem>
-                <CardItem cardBody>
-                  <Image
-                    source={{ uri: imageUrl }}
-                    style={{ height: 200, width: null, flex: 1 }}
-                  />
-                </CardItem>
-              </Card>
-            </TouchableWithoutFeedback>
-          ))}
+          .map(
+            ({
+              city,
+              name,
+              email,
+              itinerary,
+              livingStreetAddress,
+              range,
+              imageUrl,
+              profilePic
+            }) => (
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  console.log(this.props);
+
+                  this.props.navigation.navigate("PastTripScreen", {
+                    city,
+                    name,
+                    email,
+                    range,
+                    itinerary,
+                    livingStreetAddress,
+                    imageUrl
+                  });
+                }}
+              >
+                <Card style={{ height: 350 }}>
+                  <CardItem>
+                    <Left>
+                      <Thumbnail source={{ uri: profilePic }} />
+                      <Body>
+                        <Text>{city}</Text>
+                        <Text>{range}</Text>
+                      </Body>
+                    </Left>
+                  </CardItem>
+                  <CardItem cardBody>
+                    <Image
+                      source={{ uri: imageUrl }}
+                      style={{ height: 200, width: null, flex: 1 }}
+                    />
+                  </CardItem>
+                </Card>
+              </TouchableWithoutFeedback>
+            )
+          )}
       </Content>
     );
   }

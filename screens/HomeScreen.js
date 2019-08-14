@@ -1,4 +1,3 @@
-import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import {
   Image,
@@ -10,8 +9,6 @@ import {
   View
 } from "react-native";
 import SearchBar from "../components/SearchBar";
-import { MonoText } from "../components/StyledText";
-import Trips from "../components/Trips";
 import { H2, H3 } from "native-base";
 import AllTrips from "../components/AllTrips";
 
@@ -26,7 +23,7 @@ export default function HomeScreen({ navigation }) {
         <H3 style={{ textAlign: "center", margin: 10 }}>
           View your upcoming trips below
         </H3>
-        <SearchBar />
+        {/* <SearchBar /> */}
         <AllTrips navigation={navigation} />
       </ScrollView>
     </View>
