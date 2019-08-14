@@ -15,7 +15,7 @@ class Settings extends Component {
     username: "",
     password: "*********",
     email: "",
-    profilePic: ""
+    profilePic: "."
   };
 
   async componentDidMount() {

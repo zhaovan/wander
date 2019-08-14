@@ -13,14 +13,16 @@ import {
   H2,
   CardItem,
   Card,
-  Header,
+  Picker,
+  Form,
   Button,
   DatePicker,
   ListItem,
   Separator,
   Left,
   Thumbnail,
-  Body
+  Body,
+  Icon
 } from "native-base";
 import { db } from "../config";
 import { unsplash } from "../unsplash";
@@ -34,6 +36,68 @@ export function NewItinerary({ navigation }) {
   const [savedLocations, setSavedLocations] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [selected, setSelected] = useState("");
+  const typesOfPlaces = [
+    "amusement_park",
+    "aquarium",
+    "art_gallery",
+    "atm",
+    "bakery",
+    "bank",
+    "bar",
+    "beauty_salon",
+    "book_store",
+    "bowling_alley",
+    "bus_station",
+    "cafe",
+    "campground",
+    "casino",
+    "church",
+    "city_hall",
+    "clothing_store",
+    "convenience_store",
+    "courthouse",
+    "department_store",
+    "doctor",
+    "embassy",
+    "florist",
+    "furniture_store",
+    "gas_station",
+    "gym",
+    "hair_care",
+    "hardware_store",
+    "hindu_temple",
+    "hospital",
+    "jewelry_store",
+    "library",
+    "liquor_store",
+    "lodging",
+    "meal_delivery",
+    "meal_takeaway",
+    "mosque",
+    "movie_rental",
+    "movie_theater",
+    "museum",
+    "night_club",
+    "painter",
+    "park",
+    "pet_store",
+    "police",
+    "restaurant",
+    "school",
+    "shoe_store",
+    "shopping_mall",
+    "spa",
+    "stadium",
+    "store",
+    "subway_station",
+    "supermarket",
+    "synagogue",
+    "taxi_stand",
+    "train_station",
+    "transit_station",
+    "zoo"
+  ];
   return (
     <View style={styles.container}>
       <ScrollView
@@ -92,6 +156,30 @@ export function NewItinerary({ navigation }) {
               onChangeText={add => setAddress(add)}
             />
           </CardItem>
+          <CardItem style={{ flexDirection: "row" }}>
+            <Text>Filter by point of interest!</Text>
+            <Form>
+              <Picker
+                note
+                mode="dropdown"
+                style={{ width: 200 }}
+                iosIcon={<Icon name="arrow-down" />}
+                selectedValue={selected}
+                onValueChange={location => {
+                  console.log(location);
+                  setSelected(location);
+                }}
+              >
+                {typesOfPlaces.map(location => (
+                  <Picker.Item
+                    key={location}
+                    label={location.toUpperCase()}
+                    value={location}
+                  />
+                ))}
+              </Picker>
+            </Form>
+          </CardItem>
         </Card>
         <Button
           light
@@ -108,7 +196,7 @@ export function NewItinerary({ navigation }) {
                 location.lat
               },${
                 location.lng
-              }&rankby=distance&key=AIzaSyDptpVBCUtpS0B15wsxjCePizp31_lSVuQ`
+              }&rankby=distance&type=${selected}&key=AIzaSyDptpVBCUtpS0B15wsxjCePizp31_lSVuQ`
             );
             const nearbyData = await nearbyResult.json();
             const { results } = nearbyData;
@@ -117,7 +205,6 @@ export function NewItinerary({ navigation }) {
               .getRandomPhoto({ query: city, orientation: "landscape" })
               .then(toJson)
               .then(json => {
-                console.log(json.urls.full);
                 setPhoto(json.urls.full);
               });
           }}
