@@ -112,13 +112,13 @@ export default class Trips extends Component {
                   });
                 }}
               >
-                <Card style={{ height: 350 }}>
+                <Card style={{ height: 300 }}>
                   <CardItem>
                     <Left>
                       <Thumbnail source={{ uri: profilePic }} />
                       <Body>
                         <Text>{city}</Text>
-                        <Text>{range}</Text>
+                        <Text style={{ color: "gray" }}>{range}</Text>
                       </Body>
                     </Left>
                   </CardItem>

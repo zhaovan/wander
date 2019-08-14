@@ -48,7 +48,14 @@ export function PastTripItinerary({ navigation }) {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <H2 style={{ textAlign: "center", margin: 30, color: "white" }}>
+        <H2
+          style={{
+            textAlign: "center",
+            margin: 30,
+            color: "white",
+            fontWeight: "700"
+          }}
+        >
           {city}
         </H2>
         <Card transparent style={{ display: "flex" }}>
@@ -74,7 +81,14 @@ export function PastTripItinerary({ navigation }) {
             <Text>Your plans for your trip:</Text>
           </CardItem>
           <CardItem>
-            <View style={{ alignItems: "center" }}>
+            <View
+              style={{
+                alignItems: "center",
+                flexDirection: "column",
+                alignItems: "center",
+                flex: 1
+              }}
+            >
               {itinerary.map(({ name, types, vicinity }) => (
                 <ListItem
                   key={name}
@@ -118,7 +132,7 @@ PastTripItinerary.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fec771",
+    backgroundColor: "#83142c",
     textAlign: "center"
   },
   developmentModeText: {

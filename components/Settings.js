@@ -47,12 +47,11 @@ class Settings extends Component {
         transparent
         style={{
           alignItems: "center",
-          paddingtop: 10,
-          backgroundColor: "pink"
+          backgroundColor: "#fbc99d"
         }}
       >
-        <CardItem style={{ alignItems: "center", margin: 30 }}>
-          <Body style={{}}>
+        <CardItem style={{ alignItems: "center", margin: 30, flex: 1 }}>
+          <Body style={{ textAlign: "center" }}>
             <Text>Profile Picture:</Text>
             <Image
               source={{ uri: this.state.profilePic }}
