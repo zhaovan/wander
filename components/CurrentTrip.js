@@ -1,44 +1,22 @@
 import React, { Component } from "react";
+import { Image, TouchableWithoutFeedback } from "react-native";
 import {
-  Image,
-  StyleSheet,
-  TouchableHighlight,
-  TouchableWithoutFeedback
-} from "react-native";
-import {
-  Container,
-  Header,
   Content,
   Card,
-  View,
   CardItem,
   Thumbnail,
   Text,
-  Button,
-  Icon,
   Left,
-  Body,
-  Right
+  Body
 } from "native-base";
 import { db } from "../config";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#ebebeb"
-  },
-  cardStyle: {
-    backgroundColor: "#eb7070"
-  }
-});
-
-export default class Trips extends Component {
+export default class CurrentTrip extends Component {
   state = {
     users: []
   };
 
-  //trying to pull snapshot of the data
+  // Trying to pull snapshot of the data
   async componentDidMount() {
     const { users } = this.state;
     const collection = await db.collection("users");
@@ -52,7 +30,7 @@ export default class Trips extends Component {
           end[1]
         } ${end[2]}`;
 
-        console.log(doc.data());
+        // console.log(doc.data());
         this.setState({
           users: [
             ...this.state.users,
@@ -62,11 +40,7 @@ export default class Trips extends Component {
               startDate,
               endDate,
               itinerary: doc.data().Itinerary,
-              //   livingName: doc.data().Living.Name,
               livingStreetAddress: doc.data().LivingAddress,
-              //   livingCity: doc.data().Living.City,
-              //   livingState: doc.data().Living.State,
-              //   livingZipCode: doc.data().Living.ZipCode,
               city: doc.data().Location,
               imageUrl: doc.data().ImageUrl,
               range,
@@ -84,8 +58,10 @@ export default class Trips extends Component {
     return (
       <Content>
         {users
-          .filter(({ endDate }) =>
-            moment(Date.now()).isSameOrAfter(new Date(endDate))
+          .filter(
+            ({ startDate, endDate }) =>
+              moment(Date.now()).isSameOrAfter(new Date(startDate)) &&
+              moment(Date.now()).isSameOrBefore(new Date(endDate))
           )
           .map(
             ({
@@ -101,6 +77,8 @@ export default class Trips extends Component {
               <TouchableWithoutFeedback
                 key={imageUrl}
                 onPress={() => {
+                  console.log(this.props);
+
                   this.props.navigation.navigate("PastTripScreen", {
                     city,
                     name,

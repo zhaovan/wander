@@ -77,6 +77,7 @@ export function PastTripItinerary({ navigation }) {
             <View style={{ alignItems: "center" }}>
               {itinerary.map(({ name, types, vicinity }) => (
                 <ListItem
+                  key={name}
                   style={{ flexDirection: "column", textAlign: "center" }}
                 >
                   <Text>Place: {name}</Text>
@@ -90,11 +91,18 @@ export function PastTripItinerary({ navigation }) {
         <Button
           small
           rounded
+          style={{ margin: 20 }}
           onPress={() => {
             navigation.navigate("Home");
           }}
         >
-          <Text style={{ position: "absolute", left: "43%", color: "white" }}>
+          <Text
+            style={{
+              position: "absolute",
+              left: "43%",
+              color: "white"
+            }}
+          >
             Go Back
           </Text>
         </Button>

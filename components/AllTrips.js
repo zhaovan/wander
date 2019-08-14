@@ -6,11 +6,8 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 import {
-  Container,
-  Header,
   Content,
   Card,
-  View,
   CardItem,
   Thumbnail,
   Text,
@@ -18,21 +15,10 @@ import {
   Icon,
   Left,
   Body,
-  Right
+  Right,
+  Spinner
 } from "native-base";
 import { db } from "../config";
-import pfp from "../assets/images/corgi.jpg";
-import london from "../assets/images/london.jpg";
-import Moment from "react-moment";
-import date from "date";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#ebebeb"
-  }
-});
 
 export default class Trips extends Component {
   state = {
@@ -63,11 +49,7 @@ export default class Trips extends Component {
               startDate,
               endDate,
               itinerary: doc.data().Itinerary,
-              //   livingName: doc.data().Living.Name,
               livingStreetAddress: doc.data().LivingAddress,
-              //   livingCity: doc.data().Living.City,
-              //   livingState: doc.data().Living.State,
-              //   livingZipCode: doc.data().Living.ZipCode,
               city: doc.data().Location,
               imageUrl: doc.data().ImageUrl,
               range,

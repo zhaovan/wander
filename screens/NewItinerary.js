@@ -123,7 +123,7 @@ export function NewItinerary({ navigation }) {
               });
           }}
         >
-          <Text primary rounded style={{ position: "absolute", left: "25%" }}>
+          <Text primary rounded style={{ position: "absolute", left: "15%" }}>
             Search for a location near your hotel!
           </Text>
         </Button>
@@ -154,7 +154,7 @@ export function NewItinerary({ navigation }) {
         ) : (
           <Text>Click on a location to add it here</Text>
         )}
-        <Separator style={{ height: 40, textAlignVertical: "center" }} bordered>
+        <Separator style={{ height: 50, textAlignVertical: "center" }} bordered>
           <Text>Possible locations to go to:</Text>
         </Separator>
         {nearbyLocations
@@ -171,7 +171,14 @@ export function NewItinerary({ navigation }) {
                   <Left>
                     <Thumbnail source={{ uri: icon }} />
                   </Left>
-                  <Body style={{ display: "flex", flexDirection: "column" }}>
+                  <Body
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      textAlign: "center",
+                      alignItems: "center"
+                    }}
+                  >
                     <Text>Name: {name}</Text>
                     <Text>Location: {vicinity}</Text>
                     <Text>Type of Point of Interest: {types[0]}</Text>

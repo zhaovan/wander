@@ -11,6 +11,7 @@ import {
 import SearchBar from "../components/SearchBar";
 import { H2, H3 } from "native-base";
 import AllTrips from "../components/AllTrips";
+import CurrentTrip from "../components/CurrentTrip";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -23,9 +24,19 @@ export default function HomeScreen({ navigation }) {
           Welcome back, Soha!
         </H2>
         <H3 style={{ textAlign: "center", margin: 5, color: "white" }}>
-          View your upcoming trips below
+          Current Trip
         </H3>
-        {/* <SearchBar /> */}
+        <CurrentTrip navigation={navigation} />
+        <H3
+          style={{
+            textAlign: "center",
+            marginTop: 20,
+            marginBottom: 5,
+            color: "white"
+          }}
+        >
+          Upcoming Trips
+        </H3>
         <AllTrips navigation={navigation} />
       </ScrollView>
     </View>
