@@ -9,7 +9,7 @@ import {
   View
 } from "react-native";
 import SearchBar from "../components/SearchBar";
-import { H2, H3 } from "native-base";
+import { H2, H3, Header } from "native-base";
 import AllTrips from "../components/AllTrips";
 import CurrentTrip from "../components/CurrentTrip";
 
@@ -23,9 +23,11 @@ export default function HomeScreen({ navigation }) {
         <H2 style={{ textAlign: "center", margin: 20, color: "white" }}>
           Welcome back, Soha!
         </H2>
-        <H3 style={{ textAlign: "center", margin: 5, color: "white" }}>
+        <Header style={{ backgroundColor: "#b6ffea"  }}>
+        <H3 style={{ textAlign: "center", margin: 5, color: "black" }}>
           Current Trip
         </H3>
+        </Header>
         <CurrentTrip navigation={navigation} />
         <H3
           style={{

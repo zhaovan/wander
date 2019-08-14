@@ -90,7 +90,7 @@ export default class CurrentTrip extends Component {
                   });
                 }}
               >
-                <Card style={{ height: 350 }}>
+                <Card style={{ height: 350, backgroundColor: "#b6ffea" }}>
                   <CardItem>
                     <Left>
                       <Thumbnail source={{ uri: profilePic }} />
