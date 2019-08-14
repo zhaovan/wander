@@ -49,7 +49,7 @@ export function NewItinerary({ navigation }) {
             backgroundColor: "#FFC0CB"
           }}
         >
-          City your're traveling to: {city}
+          City you're traveling to: {city}
         </H2>
         <Card transparent>
           <CardItem>
@@ -123,10 +123,10 @@ export function NewItinerary({ navigation }) {
               });
           }}
         >
-          <Text primary>Search for a locations near your hotel!</Text>
+          <Text primary>Search for a location near your hotel!</Text>
         </Button>
-        <Separator bordered style={{ flex: 1 }}>
-          <Text>Locations in Itinerary:</Text>
+        <Separator bordered style={{ flex: 1, height: 50 }}>
+          <Text>Locations in Itinerary (Tap to delete):</Text>
         </Separator>
         {savedLocations ? (
           savedLocations.map(({ name, vicinity, types, icon }) => (
@@ -152,7 +152,7 @@ export function NewItinerary({ navigation }) {
         ) : (
           <Text>Click on a location to add it here</Text>
         )}
-        <Separator bordered>
+        <Separator style={{ height: 40, textAlignVertical: "center" }} bordered>
           <Text>Possible locations to go to:</Text>
         </Separator>
         {nearbyLocations
@@ -179,14 +179,17 @@ export function NewItinerary({ navigation }) {
             ))
           : null}
         <Button
-          transparent
-          Text="Save This Itinerary"
+          primary
           onPress={() => {
             pushData(city, address, savedLocations, startDate, endDate, photo);
             navigation.navigate("HomeStack");
           }}
         >
-          <Text style={{ textAlign: "center" }}>Save this itinerary</Text>
+          <Text
+            style={{ textAlign: "center", position: "absolute", left: "37%" }}
+          >
+            Save this itinerary
+          </Text>
         </Button>
         <Button transparent onPress={() => navigation.navigate("PlanStack")}>
           <Text>Go back!</Text>
