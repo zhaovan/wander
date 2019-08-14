@@ -39,16 +39,8 @@ export default class Trips extends Component {
     users: []
   };
 
-  //trying to pull snapshot of the data
+  // Trying to pull snapshot of the data
   async componentDidMount() {
-    // var snapshot = await db.collection("users").get();
-    // console.log(snapshot.docs);
-    // snapshot = snapshot.docs;
-    // let users = Object.values(snapshot);
-    // console.log("users")
-    // console.log(users);
-    // this.setState({ users });
-
     const { users } = this.state;
     const collection = await db.collection("users");
 
@@ -61,7 +53,7 @@ export default class Trips extends Component {
           end[0]
         } ${end[2]}`;
 
-        console.log(doc.data());
+        // console.log(doc.data());
         this.setState({
           users: [
             ...this.state.users,

@@ -1,4 +1,3 @@
-import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
 import {
   Image,
@@ -26,9 +25,12 @@ import {
   Body
 } from "native-base";
 import { db } from "../config";
+import { unsplash } from "../unsplash";
+import { toJson } from "unsplash-js";
+
 export function NewItinerary({ navigation }) {
   const city = navigation.getParam("city", "No City");
-
+  const [photo, setPhoto] = useState("");
   const [address, setAddress] = useState("");
   const [nearbyLocations, setLocations] = useState();
   const [savedLocations, setSavedLocations] = useState([]);
@@ -112,6 +114,13 @@ export function NewItinerary({ navigation }) {
             const nearbyData = await nearbyResult.json();
             const { results } = nearbyData;
             setLocations(results);
+            unsplash.photos
+              .getRandomPhoto({ query: city, orientation: "landscape" })
+              .then(toJson)
+              .then(json => {
+                console.log(json.urls.full);
+                setPhoto(json.urls.full);
+              });
           }}
         >
           <Text primary>Search for a locations near your hotel!</Text>
@@ -120,7 +129,7 @@ export function NewItinerary({ navigation }) {
           <Text>Locations in Itinerary:</Text>
         </Separator>
         {savedLocations ? (
-          savedLocations.map(({ name, vicinity, types }) => (
+          savedLocations.map(({ name, vicinity, types, icon }) => (
             <ListItem thumbnail>
               <TouchableOpacity>
                 <Left>
@@ -147,7 +156,7 @@ export function NewItinerary({ navigation }) {
                   onPress={e => {
                     setSavedLocations([
                       ...savedLocations,
-                      { name, vicinity, types }
+                      { name, vicinity, types, icon }
                     ]);
                   }}
                 >
@@ -166,11 +175,12 @@ export function NewItinerary({ navigation }) {
         <Button
           transparent
           Text="Save This Itinerary"
-          onPress={() =>
-            pushData(city, address, savedLocations, startDate, endDate)
-          }
+          onPress={() => {
+            pushData(city, address, savedLocations, startDate, endDate, photo);
+            navigation.navigate("HomeStack");
+          }}
         >
-          <Text>Save this itinerary</Text>
+          <Text style={{ textAlign: "center" }}>Save this itinerary</Text>
         </Button>
         <Button transparent onPress={() => navigation.navigate("PlanStack")}>
           <Text>Go back!</Text>
@@ -180,9 +190,8 @@ export function NewItinerary({ navigation }) {
   );
 }
 
-function pushData(city, address, savedLocations, startDate, endDate) {
-  const addDoc = db
-    .collection("users")
+function pushData(city, address, savedLocations, startDate, endDate, photo) {
+  db.collection("users")
     .add({
       Name: "Soha",
       Email: "soha@fakeemail.com",
@@ -192,12 +201,13 @@ function pushData(city, address, savedLocations, startDate, endDate) {
       StartDate: startDate.toString(),
       EndDate: endDate.toString(),
       ProfilePic:
-        "https://www.petpremium.com/wp-content/uploads/ppbr/breeds/pembroke-welch-corgi_profile_350x400.jpg"
+        "https://www.petpremium.com/wp-content/uploads/ppbr/breeds/pembroke-welch-corgi_profile_350x400.jpg",
+      ImageUrl: photo
     })
     .then(ref => {
       console.log("Added document with ID: ", ref.id);
     });
-    alert("Your new trip has been created!");
+  alert("Your new trip has been created!");
 }
 
 NewItinerary.navigationOptions = {
