@@ -71,11 +71,12 @@ export default class Trips extends Component {
               startDate,
               endDate,
               itinerary: doc.data().Itinerary,
-              livingName: doc.data().Living.Name,
-              livingStreetAddress: doc.data().Living.StreetAddress,
-              livingCity: doc.data().Living.City,
-              livingState: doc.data().Living.State,
-              livingZipCode: doc.data().Living.ZipCode,
+              //   livingName: doc.data().Living.Name,
+              livingStreetAddress: doc.data().LivingAddress,
+              //   livingCity: doc.data().Living.City,
+              //   livingState: doc.data().Living.State,
+              //   livingZipCode: doc.data().Living.ZipCode,
+              city: doc.data().Location,
               imageUrl: doc.data().ImageUrl,
               range,
               profilePic: doc.data().ProfilePic
@@ -88,7 +89,6 @@ export default class Trips extends Component {
 
   render() {
     const { users } = this.state;
-
     const moment = require("moment");
     return (
       <Content>
@@ -96,11 +96,11 @@ export default class Trips extends Component {
           .filter(({ startDate }) =>
             moment(Date.now()).isSameOrBefore(new Date(startDate))
           )
-          .map(({ livingCity, range, imageUrl, profilePic }) => (
+          .map(({ city, range, imageUrl, profilePic, navigation }) => (
             <TouchableWithoutFeedback
               onPress={() =>
-                this.props.navigation.navigate("PastTripScreen", {
-                  city: livingCity
+                navigation.navigate("PastTripScreen", {
+                  city: city
                 })
               }
             >
@@ -109,7 +109,7 @@ export default class Trips extends Component {
                   <Left>
                     <Thumbnail source={{ uri: profilePic }} />
                     <Body>
-                      <Text>{livingCity}</Text>
+                      <Text>{city}</Text>
                       <Text>{range}</Text>
                     </Body>
                   </Left>
