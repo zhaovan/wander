@@ -85,8 +85,8 @@ export default class Trips extends Component {
                   });
                 }}
               >
-                <Card style={{ height: 350, backgroundColor: "#fce2ae"  }}>
-                  <CardItem style={{ backgroundColor: "#fce2ae" }}>
+                <Card style={{ height: 300 }}>
+                  <CardItem style={{ backgroundColor: "white" }}>
                     <Left>
                       <Thumbnail source={{ uri: profilePic }} />
                       <Body>

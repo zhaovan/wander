@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import { Card, CardItem, Body, Text, Tab, Tabs, View } from "native-base";
+import {
+  Card,
+  CardItem,
+  Body,
+  Text,
+  Tab,
+  Tabs,
+  View,
+  H2,
+  H3
+} from "native-base";
 import PreviousTripsTab from "../components/PreviousTripsTab";
 import Settings from "../components/Settings";
 import { ScrollView } from "react-native-gesture-handler";
@@ -7,10 +17,10 @@ import { ScrollView } from "react-native-gesture-handler";
 class ProfileScreen extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <ScrollView>
+      <View style={{ flex: 1, backgroundColor: "#042f4b" }}>
+        <ScrollView style={{ backgroundColor: "#042f4b" }}>
           <Card transparent>
-            <CardItem>
+            <CardItem style={{ backgroundColor: "#042f4b" }}>
               <Body
                 style={{
                   display: "flex",
@@ -18,8 +28,10 @@ class ProfileScreen extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Text>Hi Soha!</Text>
-                <Text>View past trips or change your settings below!</Text>
+                <H2 style={{ color: "white" }}>Hi Soha!</H2>
+                <H3 style={{ color: "white", textAlign: "center", margin: 5 }}>
+                  View past trips or change your settings below!
+                </H3>
               </Body>
             </CardItem>
           </Card>

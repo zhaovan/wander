@@ -44,7 +44,8 @@ export function NewItinerary({ navigation }) {
           style={{
             textAlign: "center",
             margin: 30,
-            backgroundColor: "#FFC0CB"
+            color: "white",
+            fontWeight: "700"
           }}
         >
           City you're traveling to: {city}
@@ -95,7 +96,7 @@ export function NewItinerary({ navigation }) {
         <Button
           light
           rounded
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center", margin: 10 }}
           onPress={async () => {
             const mapResult = await fetch(
               `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=geometry,photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDptpVBCUtpS0B15wsxjCePizp31_lSVuQ`
@@ -121,33 +122,46 @@ export function NewItinerary({ navigation }) {
               });
           }}
         >
-          <Text primary rounded style={{ position: "absolute", left: "15%" }}>
+          <Text primary rounded style={{ position: "absolute", left: "18%" }}>
             Search for a location near your hotel!
           </Text>
         </Button>
-        <Separator bordered style={{ flex: 1, height: 50 }}>
-          <Text>Locations in Itinerary (Tap to delete):</Text>
+        <Separator bordered style={{ flex: 1, height: 50, marginTop: 50 }}>
+          <Text>Locations in Itinerary (tap to delete):</Text>
         </Separator>
         {savedLocations ? (
           savedLocations.map(({ name, vicinity, types, icon }) => (
-            <ListItem thumbnail>
-              <TouchableOpacity
-                onPress={() => {
-                  setSavedLocations([
-                    ...savedLocations.filter(place => place.name != name)
-                  ]);
-                }}
-              >
-                <Left>
-                  <Thumbnail source={{ uri: icon }} />
-                </Left>
-                <Body style={{ display: "flex", flexDirection: "column" }}>
-                  <Text>Name: {name}</Text>
-                  <Text>Location: {vicinity}</Text>
-                  <Text>Type of Point of Interest: {types[0]}</Text>
-                </Body>
-              </TouchableOpacity>
-            </ListItem>
+            <View style={{ flex: 1 }}>
+              <ListItem thumbnail style={{ margin: 5 }}>
+                <TouchableOpacity
+                  key={name}
+                  onPress={() => {
+                    setSavedLocations([
+                      ...savedLocations.filter(place => place.name != name)
+                    ]);
+                  }}
+                >
+                  <Left>
+                    <Thumbnail source={{ uri: icon }} />
+                  </Left>
+                  <Body
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      textAlign: "center"
+                    }}
+                  >
+                    <Text style={styles.descriptionText}>Name: {name}</Text>
+                    <Text style={styles.descriptionText}>
+                      Location: {vicinity}
+                    </Text>
+                    <Text style={styles.descriptionText}>
+                      Type of Point of Interest: {types[0]}
+                    </Text>
+                  </Body>
+                </TouchableOpacity>
+              </ListItem>
+            </View>
           ))
         ) : (
           <Text>Click on a location to add it here</Text>
@@ -157,7 +171,11 @@ export function NewItinerary({ navigation }) {
         </Separator>
         {nearbyLocations
           ? nearbyLocations.map(({ name, vicinity, types, icon }) => (
-              <ListItem thumbnail>
+              <ListItem
+                key={vicinity}
+                thumbnail
+                style={{ flex: 1, textAlign: "center" }}
+              >
                 <TouchableOpacity
                   onPress={e => {
                     setSavedLocations([
@@ -177,9 +195,13 @@ export function NewItinerary({ navigation }) {
                       alignItems: "center"
                     }}
                   >
-                    <Text>Name: {name}</Text>
-                    <Text>Location: {vicinity}</Text>
-                    <Text>Type of Point of Interest: {types[0]}</Text>
+                    <Text style={styles.descriptionText}>Name: {name}</Text>
+                    <Text style={styles.descriptionText}>
+                      Location: {vicinity}
+                    </Text>
+                    <Text style={styles.descriptionText}>
+                      Type of Point of Interest: {types[0]}
+                    </Text>
                   </Body>
                 </TouchableOpacity>
               </ListItem>
@@ -187,7 +209,7 @@ export function NewItinerary({ navigation }) {
           : null}
         <Button
           primary
-          style={{ margin: 10 }}
+          style={{ margin: 20 }}
           onPress={() => {
             pushData(city, address, savedLocations, startDate, endDate, photo);
             navigation.navigate("HomeStack");
@@ -206,7 +228,9 @@ export function NewItinerary({ navigation }) {
           style={{ margin: 10 }}
           onPress={() => navigation.navigate("PlanStack")}
         >
-          <Text style={{ position: "absolute", left: "45%" }}>Go back!</Text>
+          <Text style={{ position: "absolute", left: "45%", color: "white" }}>
+            Go back!
+          </Text>
         </Button>
       </ScrollView>
     </View>
@@ -240,7 +264,7 @@ NewItinerary.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#042f4b"
   },
   developmentModeText: {
     marginBottom: 20,
@@ -252,76 +276,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30
   },
-  welcomeContainer: {
-    alignItems: "center",
-    marginTop: 10,
-    marginBottom: 20
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: "contain",
-    marginTop: 3,
-    marginLeft: -10
-  },
-  getStartedContainer: {
-    alignItems: "center",
-    marginHorizontal: 50
-  },
-  homeScreenFilename: {
-    marginVertical: 7
-  },
-  codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)"
-  },
-  codeHighlightContainer: {
-    backgroundColor: "rgba(0,0,0,0.05)",
-    borderRadius: 3,
-    paddingHorizontal: 4
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    lineHeight: 24,
-    textAlign: "center"
-  },
-  tabBarInfoContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3
-      },
-      android: {
-        elevation: 20
-      }
-    }),
-    alignItems: "center",
-    backgroundColor: "#fbfbfb",
-    paddingVertical: 20
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    textAlign: "center"
-  },
-  navigationFilename: {
-    marginTop: 5
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: "center"
-  },
-  helpLink: {
-    paddingVertical: 15
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: "#2e78b7"
+  descriptionText: {
+    color: "white"
   }
 });

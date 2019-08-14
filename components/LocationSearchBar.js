@@ -32,13 +32,14 @@ const GooglePlacesInput = ({ navigation }) => {
           width: "100%"
         },
         description: {
-          fontWeight: "bold"
+          fontWeight: "bold",
+          color: "black",
+          paddingLeft: 25
         },
-        predefinedPlacesDescription: {
-          color: "#1faadb"
+        container: {
+          backgroundColor: "white"
         }
       }}
-      currentLocationLabel="Current location"
       nearbyPlacesAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
       GooglePlacesSearchQuery={{
         // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
@@ -61,7 +62,9 @@ function LocationSearchBar({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
       <Header>
-        <Text>To start a new trip, add your city of interest!</Text>
+        <Text style={{ paddingTop: 10 }}>
+          To start a new trip, add your city of interest!
+        </Text>
       </Header>
       <GooglePlacesInput navigation={navigation} />
     </View>
