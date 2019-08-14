@@ -49,8 +49,8 @@ export default class Trips extends Component {
         const { StartDate: startDate, EndDate: endDate } = doc.data();
         let begin = startDate.split(" ");
         let end = endDate.split(" ");
-        const range = `${begin[1]} ${begin[0]} ${begin[2]} - ${end[1]} ${
-          end[0]
+        const range = `${begin[0]} ${begin[1]} ${begin[2]} - ${end[0]} ${
+          end[1]
         } ${end[2]}`;
 
         // console.log(doc.data());
@@ -88,41 +88,53 @@ export default class Trips extends Component {
           .filter(({ startDate }) =>
             moment(Date.now()).isSameOrBefore(new Date(startDate))
           )
-          .map(({ city, name, email, itinerary, livingStreetAddress, range, imageUrl, profilePic }) => (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                console.log(this.props);
+          .map(
+            ({
+              city,
+              name,
+              email,
+              itinerary,
+              livingStreetAddress,
+              range,
+              imageUrl,
+              profilePic
+            }) => (
+              <TouchableWithoutFeedback
+                key={imageUrl}
+                onPress={() => {
+                  console.log(this.props);
 
-                this.props.navigation.navigate("PastTripScreen", {
-                  city,
-                  name,
-                  email,
-                  range,
-                  itinerary,
-                  livingStreetAddress,
-                  imageUrl
-                });
-              }}
-            >
-              <Card style={{ height: 350 }}>
-                <CardItem>
-                  <Left>
-                    <Thumbnail source={{ uri: profilePic }} />
-                    <Body>
-                      <Text>{city}</Text>
-                      <Text>{range}</Text>
-                    </Body>
-                  </Left>
-                </CardItem>
-                <CardItem cardBody>
-                  <Image
-                    source={{ uri: imageUrl }}
-                    style={{ height: 200, width: null, flex: 1 }}
-                  />
-                </CardItem>
-              </Card>
-            </TouchableWithoutFeedback>
-          ))}
+                  this.props.navigation.navigate("PastTripScreen", {
+                    city,
+                    name,
+                    email,
+                    range,
+                    itinerary,
+                    livingStreetAddress,
+                    imageUrl
+                  });
+                }}
+              >
+                <Card style={{ height: 350 }}>
+                  <CardItem>
+                    <Left>
+                      <Thumbnail source={{ uri: profilePic }} />
+                      <Body>
+                        <Text>{city}</Text>
+                        <Text>{range}</Text>
+                      </Body>
+                    </Left>
+                  </CardItem>
+                  <CardItem cardBody>
+                    <Image
+                      source={{ uri: imageUrl }}
+                      style={{ height: 200, width: null, flex: 1 }}
+                    />
+                  </CardItem>
+                </Card>
+              </TouchableWithoutFeedback>
+            )
+          )}
       </Content>
     );
   }

@@ -43,9 +43,17 @@ class Settings extends Component {
 
   render() {
     return (
-      <Card transparent>
-        <CardItem>
-          <Body>
+      <Card
+        transparent
+        style={{
+          alignItems: "center",
+          paddingtop: 10,
+          backgroundColor: "pink"
+        }}
+      >
+        <CardItem style={{ alignItems: "center", margin: 30 }}>
+          <Body style={{}}>
+            <Text>Profile Picture:</Text>
             <Image
               source={{ uri: this.state.profilePic }}
               style={{ height: 150, width: 150 }}
