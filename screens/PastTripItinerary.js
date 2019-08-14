@@ -23,7 +23,8 @@ import {
   Button,
   H1,
   List,
-  ListItem
+  ListItem,
+  Left
 } from "native-base";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
@@ -47,13 +48,15 @@ export function PastTripItinerary({ navigation }) {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <H2 style={{ textAlign: "center", margin: 30, color: "white" }}>{city}</H2>
-        <Card transparent>
-          <CardItem>
+        <H2 style={{ textAlign: "center", margin: 30, color: "white" }}>
+          {city}
+        </H2>
+        <Card transparent style={{ display: "flex" }}>
+          <CardItem style={{ justifyContent: "center" }}>
             <H1 style={{ textAlign: "center" }}>Travel Plans for {name}</H1>
           </CardItem>
-          <CardItem>
-            <Body>
+          <CardItem style={{ justifyContent: "center" }}>
+            <Body style={{ alignContent: "center" }}>
               <H3>{range}</H3>
             </Body>
           </CardItem>
@@ -71,9 +74,11 @@ export function PastTripItinerary({ navigation }) {
             <Text>Your plans for your trip:</Text>
           </CardItem>
           <CardItem>
-            <View>
+            <View style={{ alignItems: "center" }}>
               {itinerary.map(({ name, types, vicinity }) => (
-                <ListItem style={{ flexDirection: "column" }}>
+                <ListItem
+                  style={{ flexDirection: "column", textAlign: "center" }}
+                >
                   <Text>Place: {name}</Text>
                   <Text>Type of Attraction: {types[0].toUpperCase()}</Text>
                   <Text>Address: {vicinity}</Text>
@@ -83,12 +88,15 @@ export function PastTripItinerary({ navigation }) {
           </CardItem>
         </Card>
         <Button
-          light
+          small
+          rounded
           onPress={() => {
             navigation.navigate("Home");
           }}
         >
-          <Text>Go Back</Text>
+          <Text style={{ position: "absolute", left: "43%", color: "white" }}>
+            Go Back
+          </Text>
         </Button>
       </ScrollView>
     </View>

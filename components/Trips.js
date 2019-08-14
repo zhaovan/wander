@@ -49,8 +49,8 @@ export default class Trips extends Component {
         const { StartDate: startDate, EndDate: endDate } = doc.data();
         let begin = startDate.split(" ");
         let end = endDate.split(" ");
-        const range = `${begin[1]} ${begin[0]} ${begin[2]} - ${end[1]} ${
-          end[0]
+        const range = `${begin[0]} ${begin[1]} ${begin[2]} - ${end[0]} ${
+          end[1]
         } ${end[2]}`;
 
         console.log(doc.data());
@@ -100,9 +100,8 @@ export default class Trips extends Component {
               profilePic
             }) => (
               <TouchableWithoutFeedback
+                key={imageUrl}
                 onPress={() => {
-                  console.log(this.props);
-
                   this.props.navigation.navigate("PastTripScreen", {
                     city,
                     name,
