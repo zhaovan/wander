@@ -213,7 +213,10 @@ export function NewItinerary({ navigation }) {
             Search for a location near your hotel!
           </Text>
         </Button>
-        <Separator bordered style={{ flex: 1, height: 50, marginTop: 50 }}>
+        <Separator
+          bordered
+          style={{ flex: 1, height: 50, marginTop: 50, margin: 5 }}
+        >
           <Text>Locations in Itinerary (tap to delete):</Text>
         </Separator>
         {savedLocations ? (
@@ -253,7 +256,10 @@ export function NewItinerary({ navigation }) {
         ) : (
           <Text>Click on a location to add it here</Text>
         )}
-        <Separator style={{ height: 50, textAlignVertical: "center" }} bordered>
+        <Separator
+          style={{ height: 50, textAlignVertical: "center", margin: 5 }}
+          bordered
+        >
           <Text>Possible locations to go to:</Text>
         </Separator>
         {nearbyLocations
@@ -261,7 +267,7 @@ export function NewItinerary({ navigation }) {
               <ListItem
                 key={vicinity}
                 thumbnail
-                style={{ flex: 1, textAlign: "center" }}
+                style={{ flex: 1, textAlign: "center", margin: 5 }}
               >
                 <TouchableOpacity
                   onPress={e => {
