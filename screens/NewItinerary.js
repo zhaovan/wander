@@ -121,7 +121,7 @@ export function NewItinerary({ navigation }) {
               defaultDate={new Date()}
               minimumDate={new Date()}
               timeZoneOffsetInMinutes={undefined}
-              modalTransparent={true}
+              modalTransparent={false}
               animationType={"fade"}
               androidMode={"default"}
               placeHolderText="Select date"
@@ -138,7 +138,7 @@ export function NewItinerary({ navigation }) {
               minimumDate={new Date()}
               locale={"en"}
               timeZoneOffsetInMinutes={undefined}
-              modalTransparent={true}
+              modalTransparent={false}
               animationType={"fade"}
               androidMode={"default"}
               placeHolderText="Select date"
@@ -303,7 +303,7 @@ export function NewItinerary({ navigation }) {
           }}
         >
           <Text
-            style={{ textAlign: "center", position: "absolute", left: "37%" }}
+            style={{ textAlign: "center", position: "absolute", left: "34%" }}
           >
             Save this itinerary
           </Text>
@@ -315,7 +315,7 @@ export function NewItinerary({ navigation }) {
           style={{ margin: 10 }}
           onPress={() => navigation.navigate("PlanStack")}
         >
-          <Text style={{ position: "absolute", left: "45%", color: "white" }}>
+          <Text style={{ position: "absolute", left: "43%", color: "white" }}>
             Go back!
           </Text>
         </Button>

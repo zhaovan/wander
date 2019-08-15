@@ -94,7 +94,7 @@ export default class CurrentTrip extends Component {
                       <Thumbnail source={{ uri: profilePic }} />
                       <Body>
                         <Text>{city}</Text>
-                        <Text>{range}</Text>
+                        <Text style={{ color: "gray" }}>{range}</Text>
                       </Body>
                     </Left>
                   </CardItem>
