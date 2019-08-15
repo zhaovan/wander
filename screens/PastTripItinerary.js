@@ -91,6 +91,7 @@ export function PastTripItinerary({ navigation }) {
             >
               {itinerary.map(({ name, types, vicinity }) => (
                 <ListItem
+                  key={name}
                   style={{ flexDirection: "column", textAlign: "center" }}
                 >
                   <Text>Place: {name}</Text>
