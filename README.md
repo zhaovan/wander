@@ -4,6 +4,10 @@ Created by: Soha Jiwani and Ivan Zhao
 
 Location: Hack Lodge Seattle Summer 2019
 
+## Photos
+
+![Photo 1](/assets/iphoneScreenshots/photo1.png)
+
 ## Overview
 Wander is a mobile app created during Hack Lodge Summer Seattle 2019. The purpose of this app was to create a way for people to integrate all of their travel plans into a singular app. Keep track of all your reservations, locations, and find things to do. 
 
